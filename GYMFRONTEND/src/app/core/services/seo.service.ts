@@ -16,6 +16,12 @@ public class SeoService {
   private titleService = inject(Title);
   private metaService = inject(Meta);
 
+  setCanonicalURL(url: string) {
+  let link: HTMLLinkElement = document.querySelector("link[rel='canonical']") || document.createElement('link');
+  link.setAttribute('rel', 'canonical');
+  link.setAttribute('href', url);
+  document.head.appendChild(link);
+}
   generateTags(config: SeoConfig) {
     // 1. Set Page Title
     this.titleService.setTitle(config.title);
